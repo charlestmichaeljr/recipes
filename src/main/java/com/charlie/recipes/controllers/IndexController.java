@@ -6,6 +6,7 @@ import com.charlie.recipes.domain.UnitOfMeasure;
 import com.charlie.recipes.repositories.CategoryRepository;
 import com.charlie.recipes.repositories.UnitOfMeasureRepository;
 import com.charlie.recipes.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +16,14 @@ import java.util.Optional;
 import java.util.Set;
 
 @Controller
+@Slf4j
 public class IndexController {
 
 
     private RecipeService recipeService;
 
     public IndexController(RecipeService recipeService) {
+        log.debug("Index controller loaded");
         this.recipeService = recipeService;
     }
 
