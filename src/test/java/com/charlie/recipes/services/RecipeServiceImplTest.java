@@ -1,11 +1,14 @@
 package com.charlie.recipes.services;
 
+import com.charlie.recipes.converters.RecipeCommandToRecipe;
+import com.charlie.recipes.converters.RecipeToRecipeCommand;
 import com.charlie.recipes.domain.Recipe;
 import com.charlie.recipes.repositories.RecipeRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -21,13 +24,19 @@ public class RecipeServiceImplTest {
 
     RecipeServiceImpl recipeService;
 
+    @Autowired
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Autowired
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
     @Mock
     RecipeRepository recipeRepository;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository,recipeToRecipeCommand,recipeCommandToRecipe);
     }
 
     @Test
